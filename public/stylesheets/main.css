@@ -1,0 +1,48 @@
+/* VARIABLES */
+:root {
+  --red: rgb(233, 38, 42);
+  --blue: rgb(26, 50, 92);
+  --beige: #ffeead;
+  --yellow: #ffcc5c;
+}
+
+/* GLOBAL */
+html {
+  box-sizing: border-box;
+}
+/* best way to set box-sizing on everything */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'roboto'
+}
+a {
+  text-decoration: none;
+}
+
+/* NAVBAR */
+#logo-header {
+  width: 90px;
+}
+#fixed-margin {
+  display: block;
+  height: 61px;
+}
+#login-name {
+  color: var(--red);
+}
+
+/* MAIN BODY */
+.main-body {
+
+}
+
+/* Auth Form */
+.auth-form-div {
+  max-width: 500px;
+  min-width: 100px;
+  margin: auto;
+}
