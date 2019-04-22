@@ -10,7 +10,8 @@ import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import DesignListGhana from './components/DesignListGhana'
-import NewDesignGhana from './components/NewDesignGhana';
+import NewDesignGhanaPage from './components/NewDesignGhanaPage';
+import PermissionsPage from './components/PermissionsPage';
 
 
 const client = new ApolloClient({
@@ -28,15 +29,16 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <div className="container">
+        <div id="mainContainer" className="container">
           <Header />
           <div className="main-body">
             <Switch>
               <Route path="/" exact component={Home}></Route>
               <Route path="/ghana/designs" exact component={DesignListGhana}></Route>
-              <Route path="/ghana/designs/new" exact component={NewDesignGhana}></Route>
+              <Route path="/ghana/designs/new" exact component={NewDesignGhanaPage}></Route>
               <Route path="/login" exact component={LoginForm}></Route>
               <Route path="/signup" exact component={SignupForm}></Route>
+              <Route path="/permissions" exact component={PermissionsPage}></Route>
             </Switch>
           </div>
         </div>

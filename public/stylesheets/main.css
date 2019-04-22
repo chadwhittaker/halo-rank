@@ -17,10 +17,14 @@ html {
 body {
   padding: 0;
   margin: 0;
-  font-family: 'roboto'
+  font-family: 'roboto';
+  min-width: 768px;
 }
 a {
   text-decoration: none;
+}
+#mainContainer {
+  min-width: 720px;
 }
 
 /* NAVBAR */
@@ -45,4 +49,64 @@ a {
   max-width: 500px;
   min-width: 100px;
   margin: auto;
+}
+
+/* Ghana Design Form */
+#newDesignFormDiv {
+  min-width: 660px;
+}
+.design-form-title {
+  background-color: rgba(233, 38, 42, 0.6);
+  padding: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 4px 4px rgba(233, 38, 42, 0.6);
+  color: white;
+}
+
+/* Load Summary Component */
+#loadSummaryDiv {
+  margin: auto;
+}
+.load-summary-title {
+  width: 200px;
+  text-align: left;
+}
+.load-summary-detail {
+  width: 150px;
+  text-align: right;
+}
+
+/* User Permissions Table */
+.permission-checkbox label {
+  display: block;
+  padding: 10px 5px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Utility Classes */
+.max-900 {
+  max-width: 900px;
+}
+.max-500 {
+  max-width: 500px;
+}
+.max-200 {
+  max-width: 200px;
+}
+
+.min-70 {
+  min-width: 70px;
+}
+.min-50 {
+  min-width: 50px;
+}
+
+.width-70 {
+  width: 70px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
 }
