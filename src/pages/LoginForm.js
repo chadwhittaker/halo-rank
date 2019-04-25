@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import history from '../history';
 
-import ErrorMessage from './ErrorMessage'
-import { CURRENT_USER_QUERY } from './User';
+import ErrorMessage from '../components/ErrorMessage'
+import { CURRENT_USER_QUERY } from '../components/User';
 
 class LoginForm extends Component {
   state = { username: "", password: "" };
@@ -13,6 +14,10 @@ class LoginForm extends Component {
     // run mutation
     await login();
     this.setState({ username: "", password: "" })
+    //
+    if(!this.props.noRedirect) {
+      history.push("/")
+    }
   }
 
   render() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import User from './User';
-import LogoutButton from './LogoutButton';
+import User from '../components/User';
+import LogoutButton from '../components/LogoutButton';
 
 const Header = () => {
   return (
@@ -29,7 +29,7 @@ const Header = () => {
                         <li className="nav-item">
                           <Link className="nav-link" to="/">Home</Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        {/* <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle" href="/" id="navbarSolarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Design
@@ -38,7 +38,7 @@ const Header = () => {
                             <Link className="dropdown-item" to="/">Generic Design</Link>
                             <Link className="dropdown-item" to="/ghana/designs/new">Ghana Design</Link>
                           </div>
-                        </li>
+                        </li> */}
                         <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle" href="/" id="navbarProjectDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,7 +68,6 @@ const Header = () => {
                 )
               } else if (payload.data.me) {
                 // if logged in show this!
-                console.log(payload.data.me)
                 return (
                   <>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -76,7 +75,7 @@ const Header = () => {
                         <li className="nav-item">
                           <Link className="nav-link" to="/">Home</Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        {/* <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle" href="/" id="navbarSolarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Design
@@ -85,7 +84,7 @@ const Header = () => {
                             <Link className="dropdown-item" to="/">Generic Design</Link>
                             <Link className="dropdown-item" to="/ghana/designs/new">Ghana Design</Link>
                           </div>
-                        </li>
+                        </li> */}
                         <li className="nav-item dropdown">
                           <a className="nav-link dropdown-toggle" href="/" id="navbarProjectDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

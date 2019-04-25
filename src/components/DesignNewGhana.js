@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoadFormSummary from './LoadFormSummary';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import history from '../history';
 
 import ErrorMessage from './ErrorMessage';
 
@@ -19,8 +20,8 @@ const CREATE_DESIGN_MUTATION = gql`
     $voltage: String,
     $freq: String,
     $phase: String,
-    $area_roof: Float,
-    $area_ground: Float,
+    $area_roof: Int,
+    $area_ground: Int,
     $loads: [LoadCreateWithoutDesignInput!]!,
     ) {
   createDesign(
@@ -56,7 +57,7 @@ const CREATE_DESIGN_MUTATION = gql`
 }
 `
 
-class NewDesignGhanaForm extends Component {
+class DesignNewGhana extends Component {
   state = {
     deanery: "Accra",
     location: "",
@@ -147,8 +148,8 @@ class NewDesignGhanaForm extends Component {
                 value={this.state.loads[index].name}
                 name="name"
                 type="text"
-                className="form-control"
-                placeholder="Load Name"
+                className="form-control form-control-sm"
+                placeholder='i.e. "Light"'
               />
             </div>
             <div className="mx-1">
@@ -159,7 +160,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="0"
                 step="1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -171,7 +172,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="0"
                 step="1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -183,7 +184,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="0"
                 step="1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -195,7 +196,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="0"
                 step="1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -207,7 +208,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="0"
                 step="1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -219,7 +220,7 @@ class NewDesignGhanaForm extends Component {
                 type="number"
                 min="1"
                 step="0.1"
-                className="form-control"
+                className="form-control form-control-sm"
                 required
               />
             </div>
@@ -229,26 +230,36 @@ class NewDesignGhanaForm extends Component {
     )
   }
 
-  onSubmit = (e, createDesign) => {
+  onSubmit = async (e, createDesign, error) => {
     e.preventDefault();
 
-    createDesign();
+    const design = await createDesign();
+    if(!error && design.data) {
+      const id = design.data.createDesign.id;
+      history.push(`/ghana/designs/${id}`)
+    }
   }
 
   render() {
     return (
       <Mutation mutation={CREATE_DESIGN_MUTATION} variables={this.state}>
         {(createDesign, { error, loading }) => (
-          <div id="newGhanaDesignFormContainer" className="container max-900">
+          <div id="newGhanaDesignFormContainer" className="container max-700">
             <h3 className="lead text-center mt-4">New Design Form - Ghana</h3>
             <div id="newDesignFormDiv">
-              <form onSubmit={(e) => this.onSubmit(e, createDesign)} id="newGhanaDesignForm" className="">
+              <form onSubmit={(e) => this.onSubmit(e, createDesign, error)} id="newGhanaDesignForm" className="">
                 <ErrorMessage error={error} />
-                <h4 className="design-form-title">Location Information:</h4>
+                <h5 className="design-form-title">Location Information:</h5>
                 <div className="form-group row">
-                  <label className="col-4 col-form-label max-200" htmlFor="inputDean">Deanery</label>
+                  <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputDean">Deanery</label>
                   <div className="col">
-                    <select value={this.state.deanery} onChange={this.handleChange} name="deanery" id="inputDean" className="form-control">
+                    <select 
+                      value={this.state.deanery} 
+                      onChange={this.handleChange} 
+                      name="deanery" 
+                      id="inputDean" 
+                      className="form-control form-control-sm"
+                    >
                       <option>Accra</option>
                       <option>Keta-Akatsi</option>
                       <option>Kumasi</option>
@@ -259,35 +270,37 @@ class NewDesignGhanaForm extends Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label className="col-4 col-form-label max-200" htmlFor="inputLocation">Location</label>
+                  <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputLocation">Location</label>
                   <div className="col">
                     <input
                       value={this.state.location}
                       onChange={this.handleChange}
                       name="location"
                       type="text"
-                      className="form-control"
+                      className="form-control form-control-sm"
                       id="inputLocation"
                       placeholder="Location"
+                      required
                     />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label className="col-4 col-form-label max-200" htmlFor="inputParish">Parish</label>
+                  <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputParish">Parish</label>
                   <div className="col">
                     <input
                       value={this.state.parish}
                       onChange={this.handleChange}
                       name="parish"
                       type="text"
-                      className="form-control"
+                      className="form-control form-control-sm"
                       id="inputParish"
                       placeholder="Parish"
+                      required
                     />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label className="col-4 col-form-label max-200" htmlFor="inputLong">Coordinates</label>
+                  <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputLong">Coordinates</label>
                   <div className="col d-flex justify-start">
                     <input
                       value={this.state.longitude}
@@ -297,7 +310,7 @@ class NewDesignGhanaForm extends Component {
                       step="0.01"
                       min="0"
                       max="90"
-                      className="form-control d-inline-flex"
+                      className="form-control form-control-sm d-inline-flex"
                       id="inputLong"
                       placeholder="Longitude (deg)"
                     />
@@ -333,7 +346,7 @@ class NewDesignGhanaForm extends Component {
                       step="0.01"
                       min="0"
                       max="180"
-                      className="form-control d-inline-flex ml-2"
+                      className="form-control form-control-sm d-inline-flex ml-2"
                       id="inputLat"
                       placeholder="Latitude (deg)"
                     />
@@ -363,9 +376,9 @@ class NewDesignGhanaForm extends Component {
                     </div>
                   </div>
                 </div>
-                <h4 className="design-form-title">Electrical Details:</h4>
+                <h5 className="design-form-title">Electrical Details:</h5>
                 <div className="form-group row">
-                  <legend className="col-4 col-form-label max-200 pt-0">Grid Tied?</legend>
+                  <legend className="col-4 col-form-label col-form-label-sm max-200 pt-0">Grid Tied?</legend>
                   <div className="col">
                     <div className="form-check form-check-inline">
                       <input
@@ -394,7 +407,7 @@ class NewDesignGhanaForm extends Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <legend className="col-4 col-form-label max-200 pt-0">Working Generator?</legend>
+                  <legend className="col-4 col-form-label col-form-label-sm max-200 pt-0">Working Generator?</legend>
                   <div className="col">
                     <div className="form-check form-check-inline">
                       <input
@@ -423,7 +436,7 @@ class NewDesignGhanaForm extends Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <legend className="col-4 col-form-label max-200">Voltage</legend>
+                  <legend className="col-4 col-form-label col-form-label-sm max-200">Voltage</legend>
                   <div className="col">
                     <div className="form-check form-check-inline">
                       <input
@@ -450,12 +463,12 @@ class NewDesignGhanaForm extends Component {
                       <label className="form-check-label" htmlFor="voltRadioOther">Other</label>
                     </div>
                     <div className="d-inline-flex">
-                      <input type="text" className="form-control" id="voltOther" placeholder="..." disabled />
+                      <input type="text" className="form-control form-control-sm" id="voltOther" placeholder="..." disabled />
                     </div>
                   </div>
                 </div>
                 <div className="form-group row">
-                  <legend className="col-4 col-form-label max-200">Frequency</legend>
+                  <legend className="col-4 col-form-label col-form-label-sm max-200">Frequency</legend>
                   <div className="col">
                     <div className="form-check form-check-inline">
                       <input
@@ -482,12 +495,12 @@ class NewDesignGhanaForm extends Component {
                       <label className="form-check-label" htmlFor="freqRadioOther">Other</label>
                     </div>
                     <div className="d-inline-flex">
-                      <input type="text" className="form-control" id="freqOther" placeholder="..." disabled />
+                      <input type="text" className="form-control form-control-sm" id="freqOther" placeholder="..." disabled />
                     </div>
                   </div>
                 </div>
                 <div className="form-group row">
-                  <legend className="col-4 col-form-label max-200 pt-0">Phase</legend>
+                  <legend className="col-4 col-form-label col-form-label-sm max-200 pt-0">Phase</legend>
                   <div className="col">
                     <div className="form-check form-check-inline">
                       <input
@@ -516,7 +529,7 @@ class NewDesignGhanaForm extends Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label className="col-4 col-form-label pt-0 max-200" htmlFor="area_roof">Area Available for Solar Panels</label>
+                  <label className="col-4 col-form-label col-form-label-sm pt-0 max-200" htmlFor="area_roof">Area Available for Solar Panels</label>
                   <div className="col d-flex">
                     <input
                       value={this.state.area_roof}
@@ -524,12 +537,13 @@ class NewDesignGhanaForm extends Component {
                       name="area_roof"
                       type="number"
                       min="0"
-                      className="form-control"
+                      step="1"
+                      className="form-control form-control-sm"
                       id="area_roof"
                       placeholder="Roof"
                     />
                     <div className="d-inline-flex ml-1 pt-2">
-                      ft<sup>2</sup>
+                      m<sup>2</sup>
                     </div>
                   </div>
                   <div className="col d-flex">
@@ -539,17 +553,18 @@ class NewDesignGhanaForm extends Component {
                       name="area_ground"
                       type="number"
                       min="0"
-                      className="form-control"
+                      step="1"
+                      className="form-control form-control-sm"
                       id="area_ground"
                       placeholder="Ground"
                     />
                     <div className="d-inline-flex ml-1 pt-2">
-                      ft<sup>2</sup>
+                      m<sup>2</sup>
                     </div>
                   </div>
                 </div>
-                <h4 className="design-form-title">Load Details:</h4>
-                <div className="form-group row">
+                <h5 className="design-form-title">Load Details:</h5>
+                <div id="loadFormLabels" className="form-group row">
                   <div className="mx-1 p-0 col text-center">
                     <p className="m-0 pt-1">Name</p>
                   </div>
@@ -577,7 +592,7 @@ class NewDesignGhanaForm extends Component {
                   <button onClick={this.addLoad} className="btn btn-success">Add Load</button>
                   <button onClick={this.deleteLoad} className="btn btn-danger ml-2">Remove Load</button>
                 </div>
-                <h4 className="design-form-title">Load Summary:</h4>
+                <h5 className="design-form-title">Load Summary:</h5>
                 <LoadFormSummary loads={this.state.loads} />
                 <ErrorMessage error={error} />
                 <div className="text-center my-4">
@@ -594,4 +609,4 @@ class NewDesignGhanaForm extends Component {
 
 
 
-export default NewDesignGhanaForm;
+export default DesignNewGhana;

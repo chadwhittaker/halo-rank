@@ -2,16 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
 
 //local imports
-import Header from './components/Header';
-import Home from './components/Home';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
-import DesignListGhana from './components/DesignListGhana'
-import NewDesignGhanaPage from './components/NewDesignGhanaPage';
-import PermissionsPage from './components/PermissionsPage';
+import Header from './pages/Header';
+import Home from './pages/Home';
+import LoginForm from './pages/LoginForm';
+import SignupForm from './pages/SignupForm';
+import DesignGhanaListPage from './pages/DesignGhanaListPage';
+import DesignGhanaShowPage from './pages/DesignGhanaShowPage';
+import DesignGhanaNewPage from './pages/DesignGhanaNewPage';
+import DesignGhanaEditPage from './pages/DesignGhanaEditPage'
+import PermissionsPage from './pages/PermissionsPage';
 
 
 const client = new ApolloClient({
@@ -28,21 +31,23 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <Router history={history}>
         <div id="mainContainer" className="container">
           <Header />
           <div className="main-body">
             <Switch>
               <Route path="/" exact component={Home}></Route>
-              <Route path="/ghana/designs" exact component={DesignListGhana}></Route>
-              <Route path="/ghana/designs/new" exact component={NewDesignGhanaPage}></Route>
+              <Route path="/ghana/designs" exact component={DesignGhanaListPage}></Route>
+              <Route path="/ghana/designs/new" exact component={DesignGhanaNewPage}></Route>
+              <Route path="/ghana/designs/:id" exact component={DesignGhanaShowPage}></Route>"
+              <Route path="/ghana/designs/edit/:id" exact component={DesignGhanaEditPage}></Route>"
               <Route path="/login" exact component={LoginForm}></Route>
               <Route path="/signup" exact component={SignupForm}></Route>
               <Route path="/permissions" exact component={PermissionsPage}></Route>
             </Switch>
           </div>
         </div>
-      </BrowserRouter>
+      </Router>
     </ApolloProvider>
   );
 };

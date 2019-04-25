@@ -1,13 +1,13 @@
 import React from 'react';
 
-import PleaseSignin from './PleaseSignin';
-import NewDesignGhanaForm from './NewDesignGhanaForm';
+import PleaseSignin from '../components/PleaseSignin';
+import DesignNewGhana from '../components/DesignNewGhana';
 
 const NewDesignGhanaPage = () => {
   return (
     <div>
       <PleaseSignin>
-        <NewDesignGhanaForm />
+        <DesignNewGhana />
       </PleaseSignin>
     </div>
   );

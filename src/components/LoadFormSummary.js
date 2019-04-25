@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class LoadFormSummary extends Component {
 
   render() {
+    if(!this.props.loads) return <div className="text-center">No details available</div>
     // calculate totals based on passed in props
     const day_energy_wh = this.props.loads.reduce((sum, load) => sum + (load.quantity * load.power * load.dayUsage), 0);
     const night_energy_wh = this.props.loads.reduce((sum, load) => sum + (load.quantity * load.power * load.nightUsage), 0);

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PleaseSignin from './PleaseSignin';
-import Permissions from './Permissions';
+import PleaseSignin from '../components/PleaseSignin';
+import Permissions from '../components/Permissions';
 
 const PermissionsPage = () => {
   return (

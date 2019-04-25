@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import history from '../history';
 
-import ErrorMessage from './ErrorMessage'
-import { CURRENT_USER_QUERY } from './User';
+import ErrorMessage from '../components/ErrorMessage'
+import { CURRENT_USER_QUERY } from '../components/User';
 
 class SignupForm extends Component {
-  state = { username: "", password: "" };
+  state = {
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  };
 
   onSubmit = async (e, signup) => {
     e.preventDefault();
     // run mutation
     await signup();
-    this.setState({ username: "", password: "" })
+    this.setState({ username: "", password: "", firstName: "", lastName: "" })
+    history.push('/')
   }
 
   render() {
@@ -22,6 +29,35 @@ class SignupForm extends Component {
           <div className="auth-form-div mt-4">
             <h3 className="text-center">Sign Up Form</h3>
             <form method="post" onSubmit={(e) => this.onSubmit(e, signup)}>
+              <div className="form-group">
+                <label htmlFor="firstname-input">First Name:</label>
+                <input
+                  id="firstname-input"
+                  className="form-control"
+                  type="text"
+                  disabled={loading}
+                  required
+                  minLength="1"
+                  maxLength="30"
+                  placeholder="First Name"
+                  value={this.state.firstName}
+                  onChange={(e) => this.setState({ firstName: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastname-input">Last Name:</label>
+                <input
+                  id="lastname-input"
+                  className="form-control"
+                  type="text"
+                  disabled={loading}
+                  minLength="1"
+                  maxLength="20"
+                  placeholder="Last Name"
+                  value={this.state.lastName}
+                  onChange={(e) => this.setState({ lastName: e.target.value })}
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="username-input">Username:</label>
                 <input
@@ -65,13 +101,17 @@ class SignupForm extends Component {
 }
 
 const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION($username: String!, $password: String!) {
+  mutation SIGNUP_MUTATION($username: String!, $password: String!, $firstName: String!, $lastName: String) {
     signup(
       username: $username
       password: $password
+      firstName: $firstName
+      lastName: $lastName
     ) {
         id
         username
+        firstName
+        lastName
     }
   }
 `
