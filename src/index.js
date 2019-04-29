@@ -10,8 +10,8 @@ import Header from './pages/Header';
 import Home from './pages/Home';
 import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
-import DesignGhanaListPage from './pages/DesignGhanaListPage';
-import DesignGhanaShowPage from './pages/DesignGhanaShowPage';
+import DesignListPage from './pages/DesignListPage';
+import DesignShowPage from './pages/DesignShowPage';
 import DesignGhanaNewPage from './pages/DesignGhanaNewPage';
 import DesignGhanaEditPage from './pages/DesignGhanaEditPage'
 import PermissionsPage from './pages/PermissionsPage';
@@ -37,9 +37,9 @@ const App = () => {
           <div className="main-body">
             <Switch>
               <Route path="/" exact component={Home}></Route>
-              <Route path="/ghana/designs" exact component={DesignGhanaListPage}></Route>
+              <Route path="/ghana/designs" exact component={DesignListPage}></Route>
               <Route path="/ghana/designs/new" exact component={DesignGhanaNewPage}></Route>
-              <Route path="/ghana/designs/:id" exact component={DesignGhanaShowPage}></Route>"
+              <Route path="/ghana/designs/:id" exact component={DesignShowPage}></Route>"
               <Route path="/ghana/designs/edit/:id" exact component={DesignGhanaEditPage}></Route>"
               <Route path="/login" exact component={LoginForm}></Route>
               <Route path="/signup" exact component={SignupForm}></Route>

@@ -254,18 +254,18 @@ class DesignNewGhana extends Component {
                   <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputDean">Deanery</label>
                   <div className="col">
                     <select 
-                      value={this.state.deanery} 
+                      value={this.state.deanery}
                       onChange={this.handleChange} 
                       name="deanery" 
                       id="inputDean" 
                       className="form-control form-control-sm"
                     >
-                      <option>Accra</option>
-                      <option>Keta-Akatsi</option>
-                      <option>Kumasi</option>
-                      <option>Tamale</option>
-                      <option>Techiman</option>
-                      <option>Other</option>
+                      <option value="Accra">Accra</option>
+                      <option value="Keta-Akatsi">Keta-Akatsi</option>
+                      <option value="Kumasi">Kumasi</option>
+                      <option value="Tamale">Tamale</option>
+                      <option value="Techiman">Techiman</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>

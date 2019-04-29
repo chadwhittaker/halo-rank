@@ -251,12 +251,12 @@ class DesignEditGhana extends Component {
                               id="inputDean"
                               className="form-control form-control-sm"
                             >
-                              <option>Accra</option>
-                              <option>Keta-Akatsi</option>
-                              <option>Kumasi</option>
-                              <option>Tamale</option>
-                              <option>Techiman</option>
-                              <option>Other</option>
+                              <option value="Accra">Accra</option>
+                              <option value="Keta-Akatsi">Keta-Akatsi</option>
+                              <option value="Kumasi">Kumasi</option>
+                              <option value="Tamale">Tamale</option>
+                              <option value="Techiman">Techiman</option>
+                              <option value="Other">Other</option>
                             </select>
                           </div>
                         </div>

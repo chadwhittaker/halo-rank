@@ -1,11 +1,11 @@
 import React from 'react';
 
-import DesignListGhana from '../components/DesignListGhana'
+import DesignList from '../components/DesignList'
 
 const DesignListGhanaPage = () => {
   return (
     <div>
-      <DesignListGhana />
+      <DesignList />
     </div>
   );
 };
