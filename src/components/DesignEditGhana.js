@@ -23,7 +23,8 @@ class DesignEditGhana extends Component {
     const type = e.target.type;
     const value = e.target.value;
     // if its a number turn the string into a number
-    const val = type === 'number' ? parseFloat(value) : value;
+    let val = type === 'number' ? parseFloat(value) : value;
+    val = type === 'checkbox' ? e.target.checked : val;
     this.setState((prevState) => {
       // copy the previous state for "loads" 
       const loads = [...prevState.loads];
@@ -43,7 +44,8 @@ class DesignEditGhana extends Component {
       dayUsage: 1,
       nightUsage: 1,
       usageDays: 1,
-      surgeMult: 1
+      surgeMult: 1,
+      crit: true,
     };
 
     // add a new load object to state
@@ -199,6 +201,15 @@ class DesignEditGhana extends Component {
                 step="0.1"
                 className="form-control form-control-sm"
                 required
+              />
+            </div>
+            <div className="form-check form-check-inline mx-1">
+              <input
+                checked={this.state.loads[index].crit === true}
+                onChange={(e) => { this.handleLoadChange(e, index) }}
+                name="crit"
+                type="checkbox"
+                className="form-check-input"
               />
             </div>
           </div>
@@ -554,6 +565,39 @@ class DesignEditGhana extends Component {
                             </div>
                           </div>
                         </div>
+                        <div className="form-group row">
+                          <div className="col-4 col-form-label col-form-label-sm max-200 pt-0">Battery Backup Required?</div>
+                          <div className="col d-flex">
+                            <div className="form-check">
+                              <input
+                                defaultChecked={design.batteryBackup === true}
+                                onChange={this.handleChange}
+                                name="batteryBackup"
+                                type="checkbox"
+                                className="form-check-input"
+                                id="batteryCheckbox"
+                              />
+                              <label className="form-check-label" htmlFor="batteryCheckbox"></label>
+                            </div>
+                            <div>
+                              <input
+                                value={this.state.autoHours === undefined ? design.autoHours : this.state.autoHours}
+                                onChange={this.handleChange}
+                                name="autoHours"
+                                type="number"
+                                min="0"
+                                step="0.5"
+                                className="form-control form-control-sm max-100 ml-2"
+                                id="autoHours"
+                                placeholder="Hours of Autonomy"
+                                disabled={(this.state.batteryBackup === undefined && !design.batteryBackup) || this.state.batteryBackup === false}
+                              />
+                            </div>
+                            <div className="d-inline-flex ml-1 pt-2">
+                              hours
+                    </div>
+                          </div>
+                        </div>
                         <h5 className="design-form-title">Load Details:</h5>
                         {this.showLoads(design)}
                         <h5 className="design-form-title">Load Summary:</h5>
@@ -597,6 +641,8 @@ const DESIGN_QUERY = gql`
       phase
       area_roof
       area_ground
+      batteryBackup
+      autoHours
       loads {
         id
         name
@@ -606,6 +652,7 @@ const DESIGN_QUERY = gql`
         nightUsage
         usageDays
         surgeMult
+        crit
       }
     }
   }
@@ -628,6 +675,8 @@ const EDIT_DESIGN_MUTATION = gql`
     $phase: String,
     $area_roof: Int,
     $area_ground: Int,
+    $batteryBackup: Boolean,
+    $autoHours: Float,
     $loads: [LoadCreateWithoutDesignInput],
     ) {
   updateDesign(
@@ -646,6 +695,8 @@ const EDIT_DESIGN_MUTATION = gql`
     phase: $phase
     area_roof: $area_roof
     area_ground: $area_ground
+    batteryBackup: $batteryBackup
+    autoHours: $autoHours
     loads: $loads
   ) {
     id

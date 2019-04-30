@@ -1,5 +1,6 @@
 import React from 'react';
 import { DesignContextConsumer } from '../utils/DesignContext';
+import { Link } from 'react-router-dom';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 // import TabContainer from 'react-bootstrap/TabContainer';
@@ -28,34 +29,39 @@ class DesignContent extends React.Component {
         {(value) => {
           // contains latest design data to print to screen
           console.log(value)
-
+          if(!value.designData) return <div>Loading...</div>
+          
           return (
-            <Tabs
-              id="controlled-tab-example"
-              activeKey={this.state.key}
-              onSelect={key => this.setState({ key })}
-            >
-              <Tab eventKey="location" title="Location">
-                <DesignLocation />
-              </Tab>
-              <Tab eventKey="load" title="Load">
-                <DesignLoad />
-              </Tab>
-              <Tab eventKey="design" title="Design">
-                <DesignDesign />
-              </Tab>
-              <Tab eventKey="annual" title="Annual Solar">
-                <DesignSolarAnnual />
-              </Tab>
-              <Tab eventKey="daily" title="Daily Solar">
-                <DesignSolarDaily />
-              </Tab>
-              <Tab eventKey="cost" title="Cost">
-                <DesignCost />
-              </Tab>
-            </Tabs>
+            <div>
+              <div className="my-2">
+                <Link to={`/ghana/designs/edit/${this.props.queryData.id}`}>Edit Design</Link>
+              </div>
+              <Tabs
+                id="controlled-tab-example"
+                activeKey={this.state.key}
+                onSelect={key => this.setState({ key })}
+              >
+                <Tab eventKey="location" title="Location">
+                  <DesignLocation />
+                </Tab>
+                <Tab eventKey="load" title="Load">
+                  <DesignLoad />
+                </Tab>
+                <Tab eventKey="design" title="Design">
+                  <DesignDesign />
+                </Tab>
+                <Tab eventKey="annual" title="Annual Solar">
+                  <DesignSolarAnnual />
+                </Tab>
+                <Tab eventKey="daily" title="Daily Solar">
+                  <DesignSolarDaily />
+                </Tab>
+                <Tab eventKey="cost" title="Cost">
+                  <DesignCost />
+                </Tab>
+              </Tabs>
+            </div>
           )
-
         }}
       </DesignContextConsumer>
     );

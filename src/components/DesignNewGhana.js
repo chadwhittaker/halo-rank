@@ -22,6 +22,8 @@ const CREATE_DESIGN_MUTATION = gql`
     $phase: String,
     $area_roof: Int,
     $area_ground: Int,
+    $batteryBackup: Boolean!
+    $autoHours: Float
     $loads: [LoadCreateWithoutDesignInput!]!,
     ) {
   createDesign(
@@ -39,6 +41,8 @@ const CREATE_DESIGN_MUTATION = gql`
     phase: $phase
     area_roof: $area_roof
     area_ground: $area_ground
+    batteryBackup: $batteryBackup
+    autoHours: $autoHours
     loads: $loads
   ) {
     id
@@ -73,6 +77,8 @@ class DesignNewGhana extends Component {
     phase: "Single",
     area_roof: 0,
     area_ground: 0,
+    batteryBackup: true,
+    autoHours: 4,
     loads: [{
       name: "",
       quantity: 1,
@@ -80,7 +86,8 @@ class DesignNewGhana extends Component {
       dayUsage: 1,
       nightUsage: 1,
       usageDays: 1,
-      surgeMult: 1
+      surgeMult: 1,
+      crit: true,
     }],
   }
 
@@ -98,7 +105,8 @@ class DesignNewGhana extends Component {
     const type = e.target.type;
     const value = e.target.value;
     // if its a number turn the string into a number
-    const val = type === 'number' ? parseFloat(value) : value;
+    let val = type === 'number' ? parseFloat(value) : value;
+    val = type === 'checkbox' ? e.target.checked : val;
     this.setState((prevState) => {
       // copy the previous state for "loads" 
       const loads = [...prevState.loads];
@@ -118,7 +126,8 @@ class DesignNewGhana extends Component {
       dayUsage: 1,
       nightUsage: 1,
       usageDays: 1,
-      surgeMult: 1
+      surgeMult: 1,
+      crit: true,
     };
 
     // add a new load object to state
@@ -224,6 +233,15 @@ class DesignNewGhana extends Component {
                 required
               />
             </div>
+            <div className="form-check form-check-inline mx-1">
+              <input
+                checked={this.state.loads[index].crit === true}
+                onChange={(e) => { this.handleLoadChange(e, index) }}
+                name="crit"
+                type="checkbox"
+                className="form-check-input"
+              />
+            </div>
           </div>
         )
       })
@@ -234,7 +252,7 @@ class DesignNewGhana extends Component {
     e.preventDefault();
 
     const design = await createDesign();
-    if(!error && design.data) {
+    if (!error && design.data) {
       const id = design.data.createDesign.id;
       history.push(`/ghana/designs/${id}`)
     }
@@ -253,11 +271,11 @@ class DesignNewGhana extends Component {
                 <div className="form-group row">
                   <label className="col-4 col-form-label col-form-label-sm max-200" htmlFor="inputDean">Deanery</label>
                   <div className="col">
-                    <select 
+                    <select
                       value={this.state.deanery}
-                      onChange={this.handleChange} 
-                      name="deanery" 
-                      id="inputDean" 
+                      onChange={this.handleChange}
+                      name="deanery"
+                      id="inputDean"
                       className="form-control form-control-sm"
                     >
                       <option value="Accra">Accra</option>
@@ -560,6 +578,38 @@ class DesignNewGhana extends Component {
                     />
                     <div className="d-inline-flex ml-1 pt-2">
                       m<sup>2</sup>
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col-4 col-form-label col-form-label-sm max-200 pt-0">Battery Backup Required?</div>
+                  <div className="col d-flex">
+                    <div className="form-check">
+                      <input
+                        checked={this.state.batteryBackup === true}
+                        onChange={this.handleChange}
+                        name="batteryBackup"
+                        type="checkbox"
+                        className="form-check-input"
+                        id="batteryCheckbox"
+                      />
+                      <label className="form-check-label" htmlFor="batteryCheckbox"></label>
+                    </div>
+                    <div>
+                      <input
+                        value={this.state.autoHours}
+                        onChange={this.handleChange}
+                        name="autoHours"
+                        type="number"
+                        min="0"
+                        step="0.5"
+                        className="form-control form-control-sm max-100 ml-2"
+                        id="autoHours"
+                        placeholder="Hours of Autonomy"
+                        disabled={!this.state.batteryBackup} />
+                    </div>
+                    <div className="d-inline-flex ml-1 pt-2">
+                      hours
                     </div>
                   </div>
                 </div>

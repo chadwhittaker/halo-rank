@@ -5,7 +5,6 @@ const DesignLocation = () => {
   return (
     <DesignContextConsumer>
       {(value) => {
-        if(!value.designData) return <div>Loading...</div>
         return (
           <div>
             Design Location Stuff..

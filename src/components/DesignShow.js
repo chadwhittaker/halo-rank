@@ -47,6 +47,8 @@ const DESIGN_QUERY = gql`
       phase
       area_roof
       area_ground
+      batteryBackup
+      autoHours
       loads {
         id
         name
@@ -55,11 +57,10 @@ const DESIGN_QUERY = gql`
         dayUsage
         nightUsage
         usageDays
-        surgeMult      
+        surgeMult
+        crit
       }
-      param_autoHours
       param_crit
-      param_loadPercent
       param_condEff
       param_maxDoD
       param_maxPowerMarkdown

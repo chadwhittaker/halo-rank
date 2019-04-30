@@ -4,6 +4,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 //local imports
 import Header from './pages/Header';
@@ -15,6 +16,8 @@ import DesignShowPage from './pages/DesignShowPage';
 import DesignGhanaNewPage from './pages/DesignGhanaNewPage';
 import DesignGhanaEditPage from './pages/DesignGhanaEditPage'
 import PermissionsPage from './pages/PermissionsPage';
+
+
 
 
 const client = new ApolloClient({

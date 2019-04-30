@@ -17,7 +17,7 @@ html {
 body {
   padding: 0;
   margin: 0;
-  /* font-family: 'roboto'; */
+  font-family: 'roboto';
   min-width: 768px;
 }
 a {
@@ -102,6 +102,12 @@ a {
 }
 .max-200 {
   max-width: 200px;
+}
+.max-100 {
+  max-width: 100px;
+}
+.max-50 {
+  max-width: 50px;
 }
 
 .min-70 {
