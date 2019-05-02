@@ -36,6 +36,7 @@ export default function selectParts(inputs) {
   const peak_surge_w = inputs.loads.reduce((sum, load) => load.crit ? sum + load.quantity * load.power * load.surgeMult : sum, 0) * (1 - inputs.param_maxPowerMarkdown);
   let days_on = weekly_energy_wh / daily_energy_wh;
   days_on = !days_on ? 0 : days_on;
+  const critLoad = inputs.loads.reduce((bool, load) => !load.crit ? true : bool, false)
 
   // calculate load averages (daily, monthly, yearly)
   const daily_energy_average_wh = weekly_energy_wh / 7;
@@ -224,6 +225,8 @@ export default function selectParts(inputs) {
         charger = {
           name: "Custom SMA",
           manuf: "SMA",
+          refDesign: 2,
+          bucket: 4,
           pmax: ratedSolarP,                  // watts
           vmax: 1000,                    // volts
           eff: 0.97,                   // percentage
@@ -244,6 +247,7 @@ export default function selectParts(inputs) {
     charger.imax = charger.pmax / 4000 * 80;
     charger.max_num_strings = charger.pmax / 4000 * 4;
   }
+
 
   return {
     inputs,
@@ -268,6 +272,7 @@ export default function selectParts(inputs) {
     yearly_energy_average_wh,
     monthly_energy_average_wh,
     // other
+    critLoad,
     days_on,
     solarWhrNeeded,
     solarWhrNeededLoad,

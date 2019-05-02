@@ -1,8 +1,10 @@
 
+import { getDailyProfile } from '../utils';
 
 export default function finishCalc(nrel, {
   solarWhrNeededLoad,
   solarWhrNeededBat,
+  panel,
   inverter,
   battery,
   charger,
@@ -10,11 +12,16 @@ export default function finishCalc(nrel, {
   days_on,
   daily_energy_wh,
 }) {
+
   // =====================================================
   // 1. grab monthly solar produced data from NREL
   // ======================================================
   // everything based off this will be in kW
   const solarProducedMonthly = nrel.data.outputs.dc_monthly;
+  // averages
+  const solarProducedAvgYear = solarProducedMonthly.reduce((sum, month) => sum + month, 0);
+  const solarProducedAvgDay = solarProducedAvgYear / 365;
+  const solarProducedAvgMonth = solarProducedAvgYear / 12;
 
   // =====================================================
   // 2. calculate daily solar produced
@@ -90,14 +97,16 @@ export default function finishCalc(nrel, {
   // totals for each month (arrays of 12)
   const solarUsableLoadMonthly = [];
   const solarUsableForSellbackMonthly = [];
+  const solarUsableTotalMonthly = [];
   const solarLossesMonthly = [];
   const loadMonthly = [];
   const gridUsedMonthly = [];
 
   for (let i = 0; i < daysInMonth.length; i++) {
     solarUsableLoadMonthly[i] = (solarUsableForDayLoad[i] + solarUsableForNightLoad[i]) * daysInMonth[i] * days_on / 7;
-    solarUsableForSellbackMonthly[i] = (solarUsableForSellback[i] * daysInMonth[i] * days_on / 7) + (solarUsableForSellbackOffDay[i] * daysInMonth[i] * (7-days_on) / 7);
-    solarLossesMonthly[i] = (solarLosses[i] * daysInMonth[i] * days_on / 7) + (solarLossesOffDay[i] * daysInMonth[i] * (7-days_on) / 7)
+    solarUsableForSellbackMonthly[i] = (solarUsableForSellback[i] * daysInMonth[i] * days_on / 7) + (solarUsableForSellbackOffDay[i] * daysInMonth[i] * (7 - days_on) / 7);
+    solarUsableTotalMonthly[i] = solarUsableLoadMonthly[i] + solarUsableForSellbackMonthly[i];
+    solarLossesMonthly[i] = (solarLosses[i] * daysInMonth[i] * days_on / 7) + (solarLossesOffDay[i] * daysInMonth[i] * (7 - days_on) / 7);
     loadMonthly[i] = daily_energy_wh / 1000 * daysInMonth[i] * days_on / 7;
     gridUsedMonthly[i] = loadMonthly[i] - solarUsableLoadMonthly[i];
   }
@@ -124,8 +133,10 @@ export default function finishCalc(nrel, {
   // gridUsedMonthly
 
 
-
-
+  // =====================================================
+  // 8. create daily profile
+  // ======================================================
+  const { hourlyProfiles } = getDailyProfile(nrel.data.outputs)
 
 
   return {
@@ -144,9 +155,16 @@ export default function finishCalc(nrel, {
     // monthly averages for each month (arrays of 12)
     solarUsableLoadMonthly,
     solarUsableForSellbackMonthly,
+    solarUsableTotalMonthly,
     solarLossesMonthly,
     loadMonthly,
     gridUsedMonthly,
+    // averages
+    solarProducedAvgDay,
+    solarProducedAvgMonth,
+    solarProducedAvgYear,
+    // other
+    hourlyProfiles,
 
   }
 }

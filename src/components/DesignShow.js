@@ -8,12 +8,13 @@ import ErrorMessage from './ErrorMessage';
 
 const DesignShow = (props) => {
   return (
-    <Query query={DESIGN_QUERY} variables={{ id: props.id }}>
-      {({data: { design }}, loading, error) => {
+    <Query query={DESIGN_QUERY} variables={{ id: props.id }} fetchPolicy="no-cache">
+      {({ data, loading, error }) => {
+        console.log("re-running query")
         if (loading) return <div>Loading...</div>
-        if (design) return (
+        if (data.design) return (
           <DesignContextConsumer>
-            {(value) => (<DesignContent value={value} queryData={design} />)}
+            {(value) => (<DesignContent value={value} queryData={data.design} />)}
           </DesignContextConsumer>
         )
         return <ErrorMessage error={error} />

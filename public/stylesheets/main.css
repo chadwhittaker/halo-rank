@@ -74,12 +74,20 @@ a {
   margin: auto;
 }
 .load-summary-title {
-  width: 200px;
+  width: 160px;
   text-align: left;
 }
 .load-summary-detail {
-  width: 150px;
+  width: 80px;
   text-align: right;
+}
+.load-summary-units {
+  text-align: left;
+  margin-left: 7px;
+}
+#loadSummaryDiv hr {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 /* User Permissions Table */
@@ -88,6 +96,84 @@ a {
   padding: 10px 5px;
   margin: 0;
   text-align: center;
+}
+
+/* Design Tab */
+.component-card {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  height: 350px;
+}
+.card-notebook {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  height: 200px;
+}
+
+.sticky-note {
+  background-color: #ffff8891;
+}
+.blue-note {
+  background-color: #99b3ff;
+}
+
+#pv-details {
+  background-color: #adebad;
+}
+
+#inverter-details {
+  background-color: #ffcc99;
+}
+
+#charger-details {
+  background-color: #99b3ff;
+}
+
+#battery-details {
+  background-color: #cc99ff;
+}
+
+
+/* Tab stuff */
+.content-h5 {
+  color: var(--red);
+  font-size: 20px; 
+  font-weight: 500;
+  margin-top: 30px;
+}
+.title-h5 {
+  font-size: 20px; 
+  font-weight: 500;
+}
+.title-card {
+  font-size: 14px; 
+  font-weight: 500;
+  margin: 0;
+  margin-top: 5px;
+}
+.content-card {
+  font-size: 14px; 
+  font-weight: 400;
+  margin: 0;
+  min-width: 200px;
+}
+.content-p {
+  margin: 0px;
+  margin-left: 10px;
+}
+.left-column {
+  width: 150px;
+  text-align: left;
+}
+.right-column {
+  width: 150px;
+  text-align: left;
+}
+#last-row-cost td {
+  color: orangered;
+  font-size: 1.3rem;
 }
 
 /* Utility Classes */
@@ -102,6 +188,12 @@ a {
 }
 .max-200 {
   max-width: 200px;
+}
+.max-160 {
+  max-width: 160px;
+}
+.max-150 {
+  max-width: 150px;
 }
 .max-100 {
   max-width: 100px;

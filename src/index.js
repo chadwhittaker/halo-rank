@@ -4,7 +4,6 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 //local imports
 import Header from './pages/Header';
@@ -22,6 +21,7 @@ import PermissionsPage from './pages/PermissionsPage';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
+  // dataIdFromObject: o => o.id,
   request: operation => {
     operation.setContext({
       fetchOptions: {
