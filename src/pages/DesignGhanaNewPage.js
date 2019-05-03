@@ -1,13 +1,14 @@
 import React from 'react';
 
 import PleaseSignin from '../components/PleaseSignin';
-import DesignNewGhana from '../components/DesignNewGhana';
+// import DesignNewGhana from '../components/DesignNewGhana';
+import CreateDesign from '../components/CreateDesign';
 
 const NewDesignGhanaPage = () => {
   return (
     <div>
       <PleaseSignin>
-        <DesignNewGhana />
+        <CreateDesign />
       </PleaseSignin>
     </div>
   );

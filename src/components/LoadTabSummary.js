@@ -20,21 +20,6 @@ class LoadTabSummary extends Component {
     let days_on = weekly_energy_wh / daily_energy_wh;
     days_on = !days_on ? 0 : days_on;
 
-    // take W to kW
-    // day_energy_wh = 
-    // night_energy_wh = this.props.loads.reduce((sum, load) => load.crit ? sum + (load.quantity * load.power * load.nightUsage) : sum, 0);
-    // daily_energy_wh = day_energy_wh + night_energy_wh;
-    // weekly_energy_wh = this.props.loads.reduce((sum, load) => load.crit ? sum + (load.quantity * load.power * (load.dayUsage + load.nightUsage) * load.usageDays) : sum, 0);
-    // peak_load_w = this.props.loads.reduce((sum, load) => load.crit ? sum + load.quantity * load.power : sum, 0);
-    // peak_surge_w = this.props.loads.reduce((sum, load) => load.crit ? sum + load.quantity * load.power * load.surgeMult : sum, 0);
-
-    // daily_energy_average_wh = weekly_energy_wh / 7;
-    // yearly_energy_average_wh = daily_energy_average_wh * 365;
-    // monthly_energy_average_wh = yearly_energy_average_wh / 12;
-
-    // days_on = weekly_energy_wh / daily_energy_wh;
-
-
 
     return (
       <div id="loadSummaryDiv">
@@ -42,7 +27,7 @@ class LoadTabSummary extends Component {
         <div className="d-flex justify-content-around">
           <div>
             <p className="content-h5 text-center">Typical Usage Day</p>
-            <div className="card-notebook blue-note shadow">
+            <div className="card-notebook sticky-note shadow">
               <div className="d-flex justify-content-start">
                 <div className="load-summary-title">Day Energy:</div>
                 <div className="load-summary-detail">{wtokwUp(day_energy_wh)}</div>
@@ -80,7 +65,7 @@ class LoadTabSummary extends Component {
           </div>
           <div>
             <p className="content-h5 text-center">Load Demand Averages</p>
-            <div className="card-notebook blue-note shadow">
+            <div className="card-notebook sticky-note shadow">
               <div className="d-flex justify-content-start">
                 <div className="load-summary-title">Weekly Energy:</div>
                 <div className="load-summary-detail">{wtokwUp0(weekly_energy_wh)}</div>

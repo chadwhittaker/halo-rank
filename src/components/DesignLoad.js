@@ -1,7 +1,7 @@
 import React from 'react';
 import { DesignContextConsumer } from '../utils/DesignContext';
 
-import LoadTabSummary from '../components/LoadTabSummary';
+import LoadFormSummary from '../components/LoadFormSummary';
 
 
 class DesignLoad extends React.Component {
@@ -87,7 +87,7 @@ class DesignLoad extends React.Component {
               <div className="text-right">
                 <button onClick={() => this.updateLoads(value.updateLoadParams)} type="button" className="btn btn-sm btn-danger">Update Design</button>
               </div>
-              <LoadTabSummary loads={this.state.loads} />
+              <LoadFormSummary loads={this.state.loads} />
             </div>
           )
         }}

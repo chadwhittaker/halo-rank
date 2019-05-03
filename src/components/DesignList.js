@@ -65,7 +65,7 @@ const columns = [
    }
   },
   {
-   name: "fullLoad",
+   name: "dailyLoad",
    label: "Load (kWh)",
    options: {
     filter: true,
@@ -115,9 +115,13 @@ const ALL_DESIGNS_QUERY = gql`
       deanery
       location
       parish
-      fullLoad
+      dailyLoad
       output_pv
       inverter
+      battery
+      charger
+      refDesign
+      bucket
       cost
     }
   }

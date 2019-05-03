@@ -23,8 +23,14 @@ const CREATE_DESIGN_MUTATION = gql`
     $area_roof: Int,
     $area_ground: Int,
     $batteryBackup: Boolean!
-    $autoHours: Float
+    $autoHours: Float,
     $loads: [LoadCreateWithoutDesignInput!]!,
+    $images: [String],
+    $notes: String,
+    $param_condEff: Float,
+    $param_maxDoD: Float,
+    $param_maxPowerMarkdown: Float,
+    $param_solarEff: Float,
     ) {
   createDesign(
     deanery: $deanery
@@ -44,6 +50,12 @@ const CREATE_DESIGN_MUTATION = gql`
     batteryBackup: $batteryBackup
     autoHours: $autoHours
     loads: $loads
+    images: $images
+    notes: $notes
+    param_condEff: $condEff
+    param_maxDoD: $param_maxDoD
+    param_maxPowerMarkdown: $param_maxPowerMarkdown
+    param_solarEff: $param_solarEff
   ) {
     id
     createdAt

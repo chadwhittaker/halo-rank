@@ -61,12 +61,12 @@ const DESIGN_QUERY = gql`
         surgeMult
         crit
       }
-      param_crit
+      images
+      notes
       param_condEff
       param_maxDoD
       param_maxPowerMarkdown
       param_solarEff
-      param_surgeMarkup
     }
 }
 `
