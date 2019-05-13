@@ -9,7 +9,7 @@ import history from './history';
 import Home from './pages/Home';
 import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
-import { endpoint, prodEndpoint } from '../config';
+import { endpoint, prodEndpoint } from './config';
 
 const client = new ApolloClient({
   uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
