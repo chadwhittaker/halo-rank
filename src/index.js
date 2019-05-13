@@ -9,9 +9,10 @@ import history from './history';
 import Home from './pages/Home';
 import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
+import { endpoint, prodEndpoint } from '../config';
 
 const client = new ApolloClient({
-  uri: "https://halo-prisma-server-43444630d9.herokuapp.com",
+  uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
   // uri: "http://localhost:4000/",
   // dataIdFromObject: o => o.id,
   request: operation => {
