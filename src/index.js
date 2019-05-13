@@ -12,7 +12,8 @@ import SignupForm from './pages/SignupForm';
 import { endpoint, prodEndpoint } from './config';
 
 const client = new ApolloClient({
-  uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
+  uri: prodEndpoint,
+  // uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
   // uri: "http://localhost:4000/",
   // dataIdFromObject: o => o.id,
   request: operation => {
@@ -49,7 +50,7 @@ ReactDOM.render(<App />, document.querySelector('#root'));
 
 
 
-// // old attempt
+// // old attemptt
 
 // const httpLink = createHttpLink({
 //   uri: 'http://localhost:4000/',
