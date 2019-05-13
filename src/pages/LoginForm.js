@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import history from '../history';
+import { Link } from 'react-router-dom';
 
 import ErrorMessage from '../components/ErrorMessage'
 import { CURRENT_USER_QUERY } from '../components/User';
@@ -15,7 +16,7 @@ class LoginForm extends Component {
     await login();
     this.setState({ username: "", password: "" })
     //
-    if(!this.props.noRedirect) {
+    if (!this.props.noRedirect) {
       history.push("/")
     }
   }
@@ -24,7 +25,10 @@ class LoginForm extends Component {
     return (
       <Mutation mutation={LOGIN_MUTATION} variables={this.state} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
         {(login, { error, loading }) => (
-          <div className="auth-form-div mt-4">
+          <div className="auth-form-div">
+            <div className="text-center">
+              <Link to="/" className="btn btn-link">Homepage</Link>
+            </div>
             <h3 className="text-center">Login Form</h3>
             <form method="post" onSubmit={(e) => this.onSubmit(e, login)}>
               <div className="form-group">

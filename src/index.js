@@ -6,21 +6,13 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
 //local imports
-import Header from './pages/Header';
 import Home from './pages/Home';
 import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
-import DesignListPage from './pages/DesignListPage';
-import DesignShowPage from './pages/DesignShowPage';
-import DesignGhanaNewPage from './pages/DesignGhanaNewPage';
-import DesignGhanaEditPage from './pages/DesignGhanaEditPage'
-import PermissionsPage from './pages/PermissionsPage';
-
-
-
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://halo-prisma-server-43444630d9.herokuapp.com",
+  // uri: "http://localhost:4000/",
   // dataIdFromObject: o => o.id,
   request: operation => {
     operation.setContext({
@@ -35,21 +27,11 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router history={history}>
-        <div id="mainContainer" className="container">
-          <Header />
-          <div className="main-body">
-            <Switch>
-              <Route path="/" exact component={Home}></Route>
-              <Route path="/ghana/designs" exact component={DesignListPage}></Route>
-              <Route path="/ghana/designs/new" exact component={DesignGhanaNewPage}></Route>
-              <Route path="/ghana/designs/:id" exact component={DesignShowPage}></Route>"
-              <Route path="/ghana/designs/edit/:id" exact component={DesignGhanaEditPage}></Route>"
-              <Route path="/login" exact component={LoginForm}></Route>
-              <Route path="/signup" exact component={SignupForm}></Route>
-              <Route path="/permissions" exact component={PermissionsPage}></Route>
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route path="/" exact component={Home}></Route>
+          <Route path="/login" exact component={LoginForm}></Route>
+          <Route path="/signup" exact component={SignupForm}></Route>
+        </Switch>
       </Router>
     </ApolloProvider>
   );

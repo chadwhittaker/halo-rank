@@ -8,9 +8,11 @@ const CURRENT_USER_QUERY = gql`
     me {
       id
       username
-      firstName
-      lastName
-      permissions
+      gamertag
+      admin
+      friends {
+        id
+      }
     }
   }
 `;

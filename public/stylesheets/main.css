@@ -18,30 +18,38 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'roboto';
-  min-width: 768px;
+  /* min-width: 768px; */
+  background-image: url('/images/halo_bg_2.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
 }
 a {
   text-decoration: none;
 }
-#mainContainer {
-  min-width: 720px;
+
+#homepage {
+
 }
+
+#mainContainer {
+  /* min-width: 720px; */
+}
+
+#newGameForm {
+
+}
+
 
 /* NAVBAR */
 #logo-header {
-  width: 90px;
+  width: 130px;
 }
 #fixed-margin {
   display: block;
-  height: 61px;
-}
-#login-name {
-  color: var(--red);
-}
-
-/* MAIN BODY */
-.main-body {
-
+  height: 55px;
 }
 
 /* Auth Form */
@@ -51,75 +59,103 @@ a {
   max-width: 500px;
   min-width: 100px;
   margin: auto;
+  margin-top: 20vh;
 }
 
-/* Ghana Design Form */
-#newDesignFormDiv {
-  
-}
-#newDesignFormDiv hr {
-  /* background-color: rgba(255, 0, 0, 0.2); */
-}
-#newDesignFormDiv label:not(.form-check-label) {
-  font-weight: 500;
-}
 .chad-inline-radio {
   top: 34px;
 }
-.design-form-title {
 
-}
 .font-small {
   font-size: 0.9rem;
 }
-.print-notes {
-  white-space: pre-line;
+
+.stats-1 {
+  width: 80px;
+  line-height: 40px;
 }
-/* .design-form-title {
-  background-color: rgba(233, 38, 42, 0.6);
-  padding: 15px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0px 0px 4px 4px rgba(233, 38, 42, 0.6);
-  color: white;
-} */
-#loadFormLabels p {
-  font-size: 0.875rem;
+.stats-2 {
+  width: 40px;
+  margin-right: 15px;
+  line-height: 40px;
 }
-.critical-column {
-  min-width: 30px;
+.stats-2 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.stats-3 {
+  width: 60px;
+  line-height: 40px;
+}
+.stats-4 {
+  width: 60px;
+  line-height: 40px;
 }
 
-/* Load Summary Component */
-#loadSummaryDiv {
-  margin: auto;
-  font-size: 0.9rem;
+.list-1 {
+  width: 140px;
+  line-height: 40px;
+  margin-right: 14px;
+  overflow: hidden;
 }
-.load-summary-title {
+.list-2 {
+  width: 40px;
+  margin-right: 15px;
+  line-height: 40px;
+}
+.list-2 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.list-3 {
+  width: 40px;
+  margin-right: 15px;
+  line-height: 40px;
+}
+.list-3 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.list-4 {
+  width: 60px;
+  line-height: 40px;
+}
+
+.history-1 {
   width: 160px;
-  text-align: left;
 }
-.load-summary-detail {
-  width: 80px;
+.history-2 {
+  width: 35px;
+  text-align: right;
+  text-transform: uppercase;
+}
+.history-3 {
+  width: 35px;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.history-4 {
+  width: 35px;
   text-align: right;
 }
-.load-summary-units {
-  text-align: left;
-  margin-left: 7px;
+.history-5 {
+  width: 35px;
+  text-align: right;
 }
-.load-summary-head {
-  font-size: 0.95rem;
+.text-green {
+  color: green;
+}
+.text-red {
+  color: red;
+}
+.display-4 {
+  font-size: 1.9rem;
+}
 
-}
-#loadSummaryDiv hr {
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
-}
-#design-form-submit {
-  width: 200px;
-  height: 50px;
-  margin: 20px;
-}
 
 /* User Permissions Table */
 .permission-checkbox label {
@@ -128,86 +164,59 @@ a {
   margin: 0;
   text-align: center;
 }
-
-/* Design Tab */
-.component-card {
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  height: 350px;
-}
-.card-notebook {
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  height: 180px;
-}
-
 .sticky-note {
   background-color: #ffff8891;
 }
-.blue-note {
-  background-color: #99b3ff;
+
+.spinner-css {
+  margin-top: 30vh;
+  width: 3rem;
+  height: 3rem;
 }
 
-#pv-details {
-  background-color: #adebad;
+/* #column-1 {
+  max-width: 500px;
 }
-
-#inverter-details {
-  background-color: #ffcc99;
-}
-
-#charger-details {
-  background-color: #99b3ff;
-}
-
-#battery-details {
-  background-color: #cc99ff;
-}
-
-
-/* Tab stuff */
-.content-h5 {
-  color: var(--red);
-  font-size: 20px; 
-  font-weight: 500;
-  margin-top: 30px;
-}
-.title-h5 {
-  font-size: 20px; 
-  font-weight: 500;
-}
-.title-card {
-  font-size: 14px; 
-  font-weight: 500;
-  margin: 0;
-  margin-top: 5px;
-}
-.content-card {
-  font-size: 14px; 
-  font-weight: 400;
-  margin: 0;
-  min-width: 200px;
-}
-.content-p {
-  margin: 0px;
-  margin-left: 10px;
-}
-.left-column {
-  width: 150px;
-  text-align: left;
-}
-.right-column {
-  width: 150px;
-  text-align: left;
-}
-#last-row-cost td {
-  color: orangered;
-  font-size: 1.3rem;
-}
+#column-2 {
+  max-width: 500px;
+} */
 
 /* Utility Classes */
+.vh-100 {
+  height: 100vh;
+}
+
+hr.chad-hr {
+  width: 30%;
+  min-width: 300px;
+  border: 0; 
+  height: 1px; 
+  background-color: #303030;
+}
+
+h1.chad-heading {
+  color: #303030;
+  /* font-size: 20px;  */
+  /* font-weight: 500; */
+}
+h2.chad-heading {
+  color: #303030;
+  /* font-size: 20px;  */
+  /* font-weight: 500; */
+  /* margin-top: 30px; */
+}
+h3.chad-heading {
+  color: #303030;
+  /* font-size: 20px;  */
+  /* font-weight: 500; */
+  /* margin-top: 30px; */
+}
+h4.chad-heading {
+  color: #303030;
+  /* font-size: 20px;  */
+  /* font-weight: 500; */
+}
+
 .max-900 {
   max-width: 900px;
 }
@@ -216,6 +225,9 @@ a {
 }
 .max-500 {
   max-width: 500px;
+}
+.max-300 {
+  max-width: 300px;
 }
 .max-200 {
   max-width: 200px;
@@ -233,15 +245,60 @@ a {
   max-width: 50px;
 }
 
+.min-950 {
+  min-width: 950px;
+}
+.min-300 {
+  min-width: 300px;
+}
+.min-250 {
+  min-width: 250px;
+}
+.min-200 {
+  min-width: 200px;
+}
 .min-70 {
   min-width: 70px;
 }
 .min-50 {
   min-width: 50px;
 }
+.mt-100 {
+  margin-top: 100px;
+}
+.mt-90 {
+  margin-top: 90px;
+}
+.mt-80 {
+  margin-top: 80px;
+}
+.mt-70 {
+  margin-top: 70px;
+}
+.mt-60 {
+  margin-top: 60px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
 
+.width-400 {
+  width: 400px;
+}
+.width-300 {
+  width: 255px;
+}
+.width-120 {
+  width: 120px;
+}
+.width-100 {
+  width: 100px;
+}
 .width-70 {
   width: 70px;
+}
+.width-50 {
+  width: 50px;
 }
 
 .flex-grow-1 {

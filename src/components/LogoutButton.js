@@ -6,7 +6,7 @@ import { CURRENT_USER_QUERY } from './User';
 
 const LogoutButton = props => (
   <Mutation mutation={LOGOUT_MUTATION} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
-    {logout => <button onClick={logout} className="btn btn-danger">Logout</button>}
+    {logout => <button onClick={logout} className="btn btn-info">Logout</button>}
   </Mutation>
 );
 
