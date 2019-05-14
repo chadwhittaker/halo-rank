@@ -24,24 +24,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
+  /* height: 100vh; */
 }
 a {
   text-decoration: none;
 }
-
-#homepage {
-
-}
-
-#mainContainer {
-  /* min-width: 720px; */
-}
-
-#newGameForm {
-
-}
-
 
 /* NAVBAR */
 #logo-header {
@@ -283,7 +270,7 @@ h4.chad-heading {
 }
 
 .width-400 {
-  width: 400px;
+  width: 330px;
 }
 .width-300 {
   width: 255px;

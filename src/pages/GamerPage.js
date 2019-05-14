@@ -23,9 +23,10 @@ class GamerPage extends Component {
         {({ loading, error, data, refetch }) => {
 
           return (
-            <>
+            <div className="container">
               <Header />
-              <div id="gamerPageDiv" className="row d-flex justify-content-center my-4">
+              <div id="fixed-margin"></div>
+              <div className="row d-flex justify-content-center m-4">
                 <div className="col-m d-flex flex-column">
                   <GamerStats gamer={data.user} loading={loading} />
                   <GamerGameHistory myID={this.props.myID} gamer={data.user} loading={loading} />
@@ -34,7 +35,7 @@ class GamerPage extends Component {
                   <GamerList changeGamer={this.changeGamer} />
                 </div>
               </div>
-            </>
+            </div>
           )
         }}
       </Query>

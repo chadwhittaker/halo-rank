@@ -34,7 +34,7 @@ class GamerList extends Component {
         {({ data, loading, error, refetch }) => {
 
           return (
-            <div className="my-4 width-400 d-flex flex-column">
+            <div className="d-flex flex-column m-4 width-400">
               <div>
                 <h4 className="display-4 text-left">Rankings:</h4>
               </div>

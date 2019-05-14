@@ -16,7 +16,7 @@ class GamerStats extends Component {
 
 
     if (this.props.loading) return (
-      <div className="d-flex flex-column my-4 width-400">
+      <div className="d-flex flex-column m-4 width-400">
         <h4 className="display-4">Loading...</h4>
 
         <div className="d-flex justify-content-start">
@@ -43,7 +43,7 @@ class GamerStats extends Component {
 
 
     return (
-      <div className="d-flex flex-column my-4 width-400">
+      <div className="d-flex flex-column m-4 width-400">
         <h4 className="display-4">{this.props.gamer.gamertag}</h4>
 
         <div className="d-flex justify-content-start">
