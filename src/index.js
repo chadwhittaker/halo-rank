@@ -19,9 +19,9 @@ const client = new ApolloClient({
   // dataIdFromObject: o => o.id,
   request: operation => {
     operation.setContext({
-      // fetchOptions: {
-      //   credentials: 'include',
-      // }
+      fetchOptions: {
+        credentials: 'include',
+      }
     });
   },
 });
