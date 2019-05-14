@@ -13,6 +13,7 @@ import { endpoint, prodEndpoint } from './config';
 
 const client = new ApolloClient({
   uri: prodEndpoint,
+  credentials: 'include',
   // uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
   // uri: "http://localhost:4000/",
   // dataIdFromObject: o => o.id,
