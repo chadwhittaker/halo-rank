@@ -12,7 +12,7 @@ import SignupForm from './pages/SignupForm';
 // import { endpoint } from './config';
 import { prodEndpoint } from './config';
 
-console.log("NODE_ENV =", process.env.NODE_ENV)
+// console.log("NODE_ENV =", process.env.NODE_ENV)
 
 const client = new ApolloClient({
   // uri: endpoint,
