@@ -23,7 +23,7 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set NODE_ENV=production && react-scripts start",
     "dev": "set NODE_ENV=development && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
