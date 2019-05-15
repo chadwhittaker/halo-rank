@@ -9,14 +9,15 @@ import history from './history';
 import Home from './pages/Home';
 import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
-import { endpoint, prodEndpoint } from './config';
+// import { endpoint } from './config';
+import { prodEndpoint } from './config';
 
-console.log("NODE_ENV =",process.env.NODE_ENV)
+console.log("NODE_ENV =", process.env.NODE_ENV)
 
 const client = new ApolloClient({
-  // uri: prodEndpoint,
   // uri: endpoint,
-  uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
+  uri: prodEndpoint,
+  // uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
   // dataIdFromObject: o => o.id,
   request: operation => {
     operation.setContext({
