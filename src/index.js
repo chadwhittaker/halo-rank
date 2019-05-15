@@ -11,11 +11,12 @@ import LoginForm from './pages/LoginForm';
 import SignupForm from './pages/SignupForm';
 import { endpoint, prodEndpoint } from './config';
 
+console.log("NODE_ENV =",process.env.NODE_ENV)
+
 const client = new ApolloClient({
-  uri: prodEndpoint,
-  // credentials: 'include',
-  // uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
-  // uri: "http://localhost:4000/",
+  // uri: prodEndpoint,
+  // uri: endpoint,
+  uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
   // dataIdFromObject: o => o.id,
   request: operation => {
     operation.setContext({
